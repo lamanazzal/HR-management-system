@@ -1,0 +1,27 @@
+li{
+    margin-left: 50px ;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  
+}
+li a{
+
+    text-decoration: none;
+    color: rgb(185, 30, 30);
+    font-size: 40px;
+
+}
+header{
+    display:flex;
+    background-color: rgb(10, 63, 63);
+    
+}
+footer{
+    display:flex;
+    background-color: rgb(80, 87, 87);
+    margin-top: 300px;
+}
+footer section p {
+    color : white
+}

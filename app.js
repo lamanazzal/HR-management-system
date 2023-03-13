@@ -20,30 +20,36 @@ const Employee7 = new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior",null)
 
 Employee.prototype.CalculateSalary = function () {
 
-    if (this.Level == "Senior")
+    if (this.Level =="Senior"){
+
         this.Salary = getRndInteger(1500, 2000);
-    else if (this.Level == "Mid-Senior")
+    }
+    else if (this.Level == "Mid-Senior"){
+
         this.Salary = getRndInteger(1000, 1500);
-    else if (this.Level == "Junior")
+    }
+    else if (this.Level == "Junior"){
+
         this.Salary = getRndInteger(500, 1000);
+    }
     this.Salary = netSalary(this.Salary);
+    console.log(this.Salary);
+    
 return this.Salary
 }
 
 Employee.prototype.rennder = function () {
 
-for (let index = 0; index < allEmployee.length; index++) {
-   
-    document.write("employee name ="+ this.FullName + " & Employee Salery ="+ this.CalculateSalary());
+    document.write("employee name ="+ this.FullName + " & Employee Salery = " + this.CalculateSalary());
     
-}
-
-
-
 };
 
 
-console.log(Employee1.rennder());
+for (let index = 0; index < allEmployee.length; index++) {
+    allEmployee[index].rennder()
+
+}
+   
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
