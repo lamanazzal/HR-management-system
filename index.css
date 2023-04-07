@@ -5,16 +5,17 @@ li{
     align-items: center;
   
 }
+
 li a{
 
     text-decoration: none;
     color: rgb(185, 30, 30);
-    font-size: 40px;
+    font-size: 20px;
 
 }
 header{
     display:flex;
-    background-color: rgb(10, 63, 63);
+    background-color: rgb(236, 245, 245);
     
 }
 footer{
@@ -24,4 +25,21 @@ footer{
 }
 footer section p {
     color : white
+}
+
+div{
+    width: 40%;
+   
+}
+h3,h1,h2{
+    font-size: 15px;
+    margin-left: 50px ;
+    
+
+}
+img {
+    width: 40%;
+    margin-left: 65px ;
+    
+
 }
