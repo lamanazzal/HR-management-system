@@ -2,26 +2,30 @@
 let allEmployee =[];
  let form = document.getElementById("form");
  let divEl1 = document.getElementById("div1");
- 
+ let EmployeeID = 1000;
 
-function Employee(EmployeeID, FullName, Department, Level, ImageURL) {
-    this.EmployeeID = EmployeeID;
+function Employee( FullName, Department, Level, ImageURL) {
+    this.EmployeeID =randomId();
     this.FullName = FullName;
     this.Department = Department;
     this.Level = Level;
     this.ImageURL = ImageURL;
     this.Salary = 0;
+   
     allEmployee.push(this)
     
 };
-const Employee1 = new Employee(1000, "Ghazi Samer", "Administration", "Senior", "./assets/ghazi.png");
-const Employee2 = new Employee(1001, "Lana Ali", "Finance", "Senior", "./assets/lana.png");
-const Employee3 = new Employee(1002, "Tamara Ayoub", "Marketing", "Senior", "./assets/tamara.png");
-const Employee4 = new Employee(1003, "Safi Walid", "Administration", "Mid-Senior","./assets/safi.png");
-const Employee5 = new Employee(1004, "Omar Zaid", "Development", "Senior","./assets/omar.png");
-const Employee6 = new Employee(1005, "Rana Saleh", "Development", "Junior","./assets/rana.png");
-const Employee7 = new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior","./assets/hadi.png");
-
+const Employee1 = new Employee( "Ghazi Samer", "Administration", "Senior", "./assets/ghazi.png");
+const Employee2 = new Employee("Lana Ali", "Finance", "Senior", "./assets/lana.png");
+const Employee3 = new Employee( "Tamara Ayoub", "Marketing", "Senior", "./assets/tamara.png");
+const Employee4 = new Employee( "Safi Walid", "Administration", "Mid-Senior","./assets/safi.png");
+const Employee5 = new Employee( "Omar Zaid", "Development", "Senior","./assets/omar.png");
+const Employee6 = new Employee( "Rana Saleh", "Development", "Junior","./assets/rana.png");
+const Employee7 = new Employee( "Hadi Ahmad", "Finance", "Mid-Senior","./assets/hadi.png");
+ function randomId () {
+    EmployeeID++
+   return EmployeeID
+}
 Employee.prototype.CalculateSalary = function () {
 
     if (this.Level =="Senior"){
@@ -44,11 +48,13 @@ return this.Salary
 
 Employee.prototype.rennder = function () {
 
-  
-
+    
     let imgEl = document.createElement("img")
     imgEl.src = this.ImageURL
-   divEl1.appendChild(imgEl);
+    divEl1.appendChild(imgEl);
+    let h2El1 = document.createElement('h2');
+    h2El1.textContent = ` ID : ${this.EmployeeID}`
+    divEl1.appendChild(h2El1)
 
     let h3El = document.createElement('h3');
    h3El.textContent = ` Name : ${this.FullName}`
@@ -65,6 +71,7 @@ Employee.prototype.rennder = function () {
 
 
 for (let index = 0; index < allEmployee.length; index++) {
+
     allEmployee[index].rennder()
 
 }
@@ -90,9 +97,41 @@ let ImageURL=(event.target.img.value);
 
 console.log(FullName,Department,Level,ImageURL)
 
-let newEmployee=new Employee(1111,FullName,Department,Level,ImageURL)
-
+let newEmployee=new Employee(FullName,Department,Level,ImageURL)
 newEmployee.rennder()
+
+saveData(allEmployee);
 }
 
 
+
+function renderAll(){
+    for (let i =7;i< allEmployee.length; i++){
+      allEmployee[i].rennder();
+      console.log(allEmployee[i]);
+      //allEmployee[i].renderTable()
+      } 
+    }
+function saveData(data){
+    let stringArr= JSON.stringify(data);
+    localStorage.setItem('employee', stringArr);
+  }
+ 
+  function getData(){
+    let retrievedArr = localStorage.getItem('employee');
+    // console.log(retrievedArr) //string
+    let objArray = JSON.parse(retrievedArr);
+    console.log("after getting from LS ",objArray) 
+    if(objArray != null){
+    for (let i = 7; i < objArray.length; i++) {
+        new Employee( objArray[i].FullName, objArray[i].Department, objArray[i].Level ,objArray[i].ImageURL)
+        
+      }
+     } 
+     renderAll();
+     }  
+      getData();
+
+
+
+ 
